@@ -1,20 +1,22 @@
 name: vocab-notify
+
 on:
   schedule:
-    - cron: '5 1,3,5,7,9,11,13,15 * * *'
+    # Chạy mỗi 30 phút trong khung 01:00 - 16:30 UTC (tức 08:00 - 23:30 giờ Việt Nam)
+    # Có jitter delay ngẫu nhiên 0-10 phút để nhận từ cách mỗi 30 đến 45 phút tự nhiên
+    - cron: '*/30 1-16 * * *'
   workflow_dispatch:
+
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Send random word to ntfy
-        run: |
-          MSG=$(python3 -c "
-          import json, random
-          words = json.load(open('words.json'))
-          w = random.choice(words)
-          ipa = w.get('ipa') or ''
-          print(((w['w'] + ' ' + ipa).strip() + ' — ' + w['vi']))
-          ")
-          curl -s -d "$MSG" "https://ntfy.sh/daniel-vocab-fde62f1750cd4175" -H "Title: Tu vung"
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          
+      - name: Run vocab push
+        run: python3 push_notify.py
