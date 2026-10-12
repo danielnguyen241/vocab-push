@@ -1,0 +1,30 @@
+{
+  "version": "2.0",
+  "active_deck": "business",
+  "interval_minutes": 30,
+  "shuffle": true,
+  "level_filter": "ALL",
+  "show_tag": true,
+  "decks": {
+    "business": {
+      "name": "Business & Ops",
+      "file": "decks/business.json",
+      "description": "162 từ vựng kinh doanh, vận hành & chiến lược"
+    },
+    "marketing": {
+      "name": "Marketing & Growth",
+      "file": "decks/marketing.json",
+      "description": "Chiến dịch, phễu, chuyển đổi, SEO & branding"
+    },
+    "ielts_c1": {
+      "name": "IELTS Academic C1-C2",
+      "file": "decks/ielts_c1.json",
+      "description": "Từ vựng học thuật nâng cao, bài luận & phản biện"
+    },
+    "phrasal_verbs": {
+      "name": "Phrasal Verbs Pro",
+      "file": "decks/phrasal_verbs.json",
+      "description": "Cụm động tự nhiên trong giao tiếp & công việc"
+    }
+  }
+}

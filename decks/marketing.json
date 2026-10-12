@@ -1,0 +1,152 @@
+[
+  {
+    "w": "acquisition",
+    "ipa": "/ˌækwɪˈzɪʃən/",
+    "vi": "thu hút khách hàng mới",
+    "l": "B2"
+  },
+  {
+    "w": "attribution",
+    "ipa": "/ˌætrɪˈbjuːʃən/",
+    "vi": "phân bổ đóng góp marketing",
+    "l": "C1"
+  },
+  {
+    "w": "churn rate",
+    "ipa": "/tʃɜːrn reɪt/",
+    "vi": "tỷ lệ khách hàng rời bỏ",
+    "l": "B2"
+  },
+  {
+    "w": "conversion rate",
+    "ipa": "/kənˈvɜːrʒən reɪt/",
+    "vi": "tỷ lệ chuyển đổi mua hàng",
+    "l": "B1"
+  },
+  {
+    "w": "funnel",
+    "ipa": "/ˈfʌnəl/",
+    "vi": "phễu bán hàng (nhận biết -> mua)",
+    "l": "B1"
+  },
+  {
+    "w": "impressions",
+    "ipa": "/ɪmˈpreʃənz/",
+    "vi": "số lượt hiển thị quảng cáo",
+    "l": "B1"
+  },
+  {
+    "w": "reach",
+    "ipa": "/riːtʃ/",
+    "vi": "số người tiếp cận thực tế",
+    "l": "B1"
+  },
+  {
+    "w": "lead generation",
+    "ipa": "/liːd ˌdʒenəˈreɪʃən/",
+    "vi": "tìm kiếm data khách tiềm năng",
+    "l": "B2"
+  },
+  {
+    "w": "retention",
+    "ipa": "/rɪˈtenʃən/",
+    "vi": "giữ chân khách hàng cũ",
+    "l": "B2"
+  },
+  {
+    "w": "organic traffic",
+    "ipa": "/ɔːrˈɡænɪk ˈtræfɪk/",
+    "vi": "lượng truy cập tự nhiên (SEO)",
+    "l": "B2"
+  },
+  {
+    "w": "bounce rate",
+    "ipa": "/baʊns reɪt/",
+    "vi": "tỷ lệ thoát trang ngay lập tức",
+    "l": "B2"
+  },
+  {
+    "w": "backlink",
+    "ipa": "/ˈbækˌlɪŋk/",
+    "vi": "liên kết từ trang khác trỏ về",
+    "l": "B2"
+  },
+  {
+    "w": "anchor text",
+    "ipa": "/ˈæŋkər tekst/",
+    "vi": "văn bản chứa liên kết trỏ link",
+    "l": "B2"
+  },
+  {
+    "w": "click-through rate",
+    "ipa": "/klɪk θruː reɪt/",
+    "vi": "tỷ lệ nhấp chuột (CTR)",
+    "l": "B2"
+  },
+  {
+    "w": "call to action",
+    "ipa": "/kɔːl tuː ˈækʃən/",
+    "vi": "lời kêu gọi hành động (CTA)",
+    "l": "B1"
+  },
+  {
+    "w": "brand awareness",
+    "ipa": "/brænd əˈwernəs/",
+    "vi": "mức độ nhận diện thương hiệu",
+    "l": "B2"
+  },
+  {
+    "w": "value proposition",
+    "ipa": "/ˈvæljuː ˌprɒpəˈzɪʃən/",
+    "vi": "tuyên bố giá trị khác biệt",
+    "l": "B2"
+  },
+  {
+    "w": "customer persona",
+    "ipa": "/ˈkʌstəmər pərˈsoʊnə/",
+    "vi": "chân dung khách hàng mục tiêu",
+    "l": "B2"
+  },
+  {
+    "w": "viral loop",
+    "ipa": "/ˈvaɪrəl luːp/",
+    "vi": "vòng lặp lan truyền tự nhiên",
+    "l": "C1"
+  },
+  {
+    "w": "omnichannel",
+    "ipa": "/ˈɒmnɪˌtʃænəl/",
+    "vi": "tiếp cận đa kênh hợp nhất",
+    "l": "C1"
+  },
+  {
+    "w": "A/B testing",
+    "ipa": "/ˌeɪ ˈbiː ˈtestɪŋ/",
+    "vi": "thử nghiệm so sánh 2 phiên bản",
+    "l": "B2"
+  },
+  {
+    "w": "cannibalization",
+    "ipa": "/ˌkænɪbəlaɪˈzeɪʃən/",
+    "vi": "ăn mòn thị phần sản phẩm cũ",
+    "l": "C1"
+  },
+  {
+    "w": "customer lifetime value",
+    "ipa": "/ˈkʌstəmər ˈlaɪftaɪm ˈvæljuː/",
+    "vi": "giá trị trọn đời của khách hàng (LTV)",
+    "l": "C1"
+  },
+  {
+    "w": "customer acquisition cost",
+    "ipa": "/ˈkʌstəmər ˌækwɪˈzɪʃən kɒst/",
+    "vi": "chi phí để có 1 khách hàng mới (CAC)",
+    "l": "C1"
+  },
+  {
+    "w": "return on ad spend",
+    "ipa": "/rɪˈtɜːrn ɒn æd spend/",
+    "vi": "tỷ suất lợi nhuận trên tiền quảng cáo (ROAS)",
+    "l": "B2"
+  }
+]
