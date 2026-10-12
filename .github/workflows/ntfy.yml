@@ -1,22 +1,40 @@
 name: vocab-notify
-
 on:
   schedule:
-    # Chạy mỗi 30 phút trong khung 01:00 - 16:30 UTC (tức 08:00 - 23:30 giờ Việt Nam)
-    # Có jitter delay ngẫu nhiên 0-10 phút để nhận từ cách mỗi 30 đến 45 phút tự nhiên
     - cron: '*/30 1-16 * * *'
   workflow_dispatch:
-
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-          
-      - name: Run vocab push
-        run: python3 push_notify.py
+      - name: Random gate
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] && [ $((RANDOM % 3)) -eq 0 ]; then
+            echo "send=false" >> $GITHUB_OUTPUT
+          else
+            echo "send=true" >> $GITHUB_OUTPUT
+          fi
+      - name: Send word to ntfy
+        if: steps.gate.outputs.send == 'true'
+        run: |
+          OUT=$(python3 -c "
+          import json, random
+          words = json.load(open('words.json'))
+          w = random.choice(words)
+          ipa = (w.get('ipa') or '').strip()
+          syl = (w.get('s') or '').strip()
+          pron = ' · '.join([p for p in [ipa, syl] if p])
+          lines = []
+          if pron:
+              lines.append(pron)
+          lines.append(w['vi'])
+          if w.get('ex'):
+              lines.append('\"' + w['ex'] + '\"')
+          print(w['w'])
+          print(chr(10).join(lines))
+          ")
+          TITLE=$(printf '%s' "$OUT" | head -n 1)
+          BODY=$(printf '%s' "$OUT" | tail -n +2)
+          curl -s -d "$BODY" "https://ntfy.sh/daniel-vocab-fde62f1750cd4175" -H "Title: $TITLE"
