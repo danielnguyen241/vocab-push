@@ -1,40 +1,57 @@
 name: vocab-notify
+
 on:
   schedule:
-    - cron: '*/30 1-16 * * *'
+    # Chạy vào phút 17 và 47 mỗi giờ (01:17 - 16:47 UTC, tức 08:17 - 23:47 giờ Việt Nam)
+    # Dùng phút lẻ (17, 47) để tránh nghẽn queue :00 và :30 của GitHub Actions, đảm bảo chạy đúng giờ 100%
+    - cron: '17,47 1-16 * * *'
   workflow_dispatch:
+
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Random gate
-        id: gate
+      
+      - name: Send vocab push to ntfy
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ] && [ $((RANDOM % 3)) -eq 0 ]; then
-            echo "send=false" >> $GITHUB_OUTPUT
-          else
-            echo "send=true" >> $GITHUB_OUTPUT
-          fi
-      - name: Send word to ntfy
-        if: steps.gate.outputs.send == 'true'
-        run: |
-          OUT=$(python3 -c "
-          import json, random
-          words = json.load(open('words.json'))
+          python3 -c "
+          import json, random, urllib.request
+
+          with open('words.json', 'r', encoding='utf-8') as f:
+              words = json.load(f)
+
           w = random.choice(words)
+          word = w.get('w', '').strip()
           ipa = (w.get('ipa') or '').strip()
           syl = (w.get('s') or '').strip()
-          pron = ' · '.join([p for p in [ipa, syl] if p])
-          lines = []
-          if pron:
-              lines.append(pron)
-          lines.append(w['vi'])
-          if w.get('ex'):
-              lines.append('\"' + w['ex'] + '\"')
-          print(w['w'])
-          print(chr(10).join(lines))
-          ")
-          TITLE=$(printf '%s' "$OUT" | head -n 1)
-          BODY=$(printf '%s' "$OUT" | tail -n +2)
-          curl -s -d "$BODY" "https://ntfy.sh/daniel-vocab-fde62f1750cd4175" -H "Title: $TITLE"
+          vi = w.get('vi', '').strip()
+          ex = w.get('ex', '').strip()
+          lvl = w.get('l', 'B1').strip()
+
+          title = f\"{word.upper()} [{lvl}]\"
+          if ipa:
+              title += f\" · {ipa}\"
+
+          body_lines = []
+          if syl:
+              body_lines.append(f\"🗣️ Đọc: {syl}\")
+          body_lines.append(f\"🎯 Nghĩa: {vi}\")
+          if ex:
+              body_lines.append(f\"💬 Ví dụ: \\\"{ex}\\\"\")
+
+          body = '\n'.join(body_lines)
+
+          req = urllib.request.Request(
+              'https://ntfy.sh/daniel-vocab-fde62f1750cd4175',
+              data=body.encode('utf-8'),
+              headers={
+                  'Title': title.encode('utf-8'),
+                  'Priority': 'urgent',
+                  'Tags': 'mortarboard,book'
+              }
+          )
+
+          with urllib.request.urlopen(req, timeout=15) as res:
+              print(f'Notification sent! Status: {res.status}, Word: {word}')
+          "
